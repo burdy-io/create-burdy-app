@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "burdy"
+
+  burdy:
+    build: .
+    restart: always
+    working_dir: /app
+    command: npm run start
+    environment:
+      TYPEORM_CONNECTION: "postgres"
+      TYPEORM_HOST: "postgres"
+      TYPEORM_USERNAME: "postgres"
+      TYPEORM_PASSWORD: "postgres"
+      TYPEORM_DATABASE: "burdy"
+      TYPEORM_PORT: "5432"
+      TYPEORM_SYNCHRONIZE: "false"
+      TYPEORM_LOGGING: "false"
+      SIGNED_COOKIE: "eK0hL1oG1bL8yL4z"
+      PUBLIC_API_URL: "/api"
+    ports:
+      - "80:4000"
+    depends_on:
+      - postgres

@@ -1,0 +1,50 @@
+{
+  "name": "my-burdy-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "burdy dev",
+    "build": "burdy build",
+    "start": "node burdy/build/main.js",
+    "db:init": "burdy db migration:generate -n initial && burdy db migration:run"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "burdy": "^1.0",
+    "yup": "^0.32.9",
+    "typeorm": "^0.2.37",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0",
+    "react-async-hook": "^3.6.2",
+    "react": "^17.0.2",
+    "axios": "^0.21.3",
+    "@hookform/resolvers": "^2.8.0",
+    "@fluentui/font-icons-mdl2": "^8.1.11",
+    "@fluentui/react": "^8.30.0",
+    "@fluentui/react-experiments": "^8.3.4",
+    "@fluentui/react-file-type-icons": "^8.3.2",
+    "@fluentui/react-hooks": "^8.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.2",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-router": "^5.1.16",
+    "@types/react-router-dom": "^5.1.8",
+    "@types/react": "^17.0.20",
+    "@types/nodemailer": "^6.4.4",
+    "@types/node": "^16.7.10",
+    "@types/express": "^4.17.13",
+    "@types/draft-js": "^0.11.5",
+    "@types/defer-promise": "^1.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-typescript": "^14.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  }
+}

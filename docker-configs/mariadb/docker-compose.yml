@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb
+    restart: always
+    expose:
+      - 3306
+    environment:
+      MARIADB_ROOT_PASSWORD: "root"
+      MARIADB_DATABASE: "burdy"
+
+  burdy:
+    build: .
+    restart: always
+    working_dir: /app
+    command: npm run start
+    environment:
+      TYPEORM_CONNECTION: "mariadb"
+      TYPEORM_HOST: "mariadb"
+      TYPEORM_USERNAME: "root"
+      TYPEORM_PASSWORD: "root"
+      TYPEORM_DATABASE: "burdy"
+      TYPEORM_PORT: "3306"
+      TYPEORM_SYNCHRONIZE: "false"
+      TYPEORM_LOGGING: "false"
+      SIGNED_COOKIE: "eK0hL1oG1bL8yL4z"
+      PUBLIC_API_URL: "/api"
+    ports:
+      - "80:4000"
+    depends_on:
+      - mariadb

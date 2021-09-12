@@ -1,0 +1,21 @@
+{
+  "include": [
+	"index.ts",
+	"helpers/**/*"
+  ],
+  "compilerOptions": {
+	"target": "es5",
+	"module": "commonjs",
+	"moduleResolution": "node",
+	"rootDir": ".",
+	"outDir": "./dist",
+	"resolveJsonModule": true,
+	"esModuleInterop": true,
+	"forceConsistentCasingInFileNames": true,
+	"strict": false,
+	"noImplicitAny": false,
+	"strictNullChecks": false,
+	"strictFunctionTypes": false,
+	"skipLibCheck": true
+  }
+}

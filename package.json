@@ -1,0 +1,58 @@
+{
+  "name": "create-burdy-app",
+  "version": "1.0.0",
+  "description": "Create Burdy apps in one command",
+  "main": "index.js",
+  "bin": {
+    "create-burdy-app": "./index.js"
+  },
+  "scripts": {
+    "dev": "ts-node -T index.ts",
+    "precompile": "rimraf dist",
+    "compile": "tsc",
+    "postcompile": "ncp README.md dist/README.md && ncp LICENSE dist/LICENSE && ncp docker-configs dist/docker-configs && ncp templates dist/templates",
+    "test": "npm run dev",
+    "pretest": "rimraf create-burdy-app"
+  },
+  "author": {
+    "email": "hello@burdy.io",
+    "name": "Burdy Technologies",
+    "url": "https://burdy.io"
+  },
+  "maintainers": [
+    {
+      "name": "Burdy Technologies",
+      "email": "hello@burdy.io",
+      "url": "https://burdy.io"
+    }
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "burdy",
+    "create-burdy-app",
+    "create-react-app",
+    "create-next-app",
+    "create-strapi-app",
+    "boilerplate",
+    "create",
+    "new",
+    "generate",
+    "react"
+  ],
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/fs-extra": "^9.0.12",
+    "@types/node": "^16.7.10",
+    "ncp": "^2.0.0",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.1.0",
+    "execa": "^5.1.1",
+    "fs-extra": "^10.0.0",
+    "ora": "^5.4.1"
+  }
+}
