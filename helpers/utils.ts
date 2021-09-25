@@ -4,6 +4,8 @@ import chalk from 'chalk';
 import execa from 'execa';
 import ora from 'ora';
 import Output from './output';
+import axios from 'axios';
+import AdmZip from 'adm-zip';
 
 export const copyToProject = async (projectName: string, dockerConfig = 'mariadb') => {
   try {
@@ -49,6 +51,42 @@ export const copyToProject = async (projectName: string, dockerConfig = 'mariadb
     process.exit(1);
   }
 };
+
+export const copyRemoteTemplate = async (projectName: string, template: string) => {
+  try {
+    const projectDir = path.join(process.cwd(), projectName);
+
+    const templateName = `burdy-starter-${template}`;
+    const gitFolderName = `${templateName}-main`;
+
+    const folderAlreadyExists = await fs.pathExists(projectDir);
+
+    if (folderAlreadyExists) {
+      Output.error(`Project ${chalk.magentaBright(projectName)} already exists. Exiting.`);
+      process.exit(1);
+    }
+
+    Output.info(`Attempting to resolve remote template ${chalk.magentaBright(template)}...`);
+
+    const {data: zipData} = await axios.get<Buffer>(
+      `https://github.com/burdy-io/${templateName}/archive/refs/heads/main.zip`,
+      {responseType: 'arraybuffer'}
+    );
+
+    const zip = new AdmZip(zipData);
+    zip.extractAllTo('.');
+
+    Output.info(`Copying files to ${chalk.magentaBright(projectName)} directory...`);
+
+    await fs.move(gitFolderName, projectDir);
+
+    Output.success('Successfully copied template!');
+  } catch (e) {
+    console.log(e);
+    Output.error(e.message);
+    process.exit(1);
+  }
+}
 
 export const installProject = async (projectName: string) => {
   try {

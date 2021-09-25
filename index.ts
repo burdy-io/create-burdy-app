@@ -3,7 +3,7 @@
 import { Argument, Command, Option } from 'commander';
 import packageJson from './package.json';
 import chalk from 'chalk';
-import {copyToProject, initDatabase, installProject} from './helpers/utils';
+import { copyRemoteTemplate, copyToProject, initDatabase, installProject } from './helpers/utils';
 import Output from "./helpers/output";
 
 const program = new Command();
@@ -25,13 +25,24 @@ program.addOption(
     .choices(['mariadb', 'postgres', 'mysql'])
 );
 
+program.addOption(
+  new Option('-t, --template <template>', 'use one of burdy starter templates ex. "next-blog"')
+    .default(null)
+)
+
 program.parse(process.argv);
 
 (async () => {
   const projectDirectory = program.processedArgs[0];
   const dockerConfig = program.opts<any>().docker;
+  const template = program.opts<any>().template;
 
-  await copyToProject(projectDirectory, dockerConfig);
+  if (template) {
+    await copyRemoteTemplate(projectDirectory, template);
+  } else {
+    await copyToProject(projectDirectory, dockerConfig)
+  }
+
   await installProject(projectDirectory);
   await initDatabase(projectDirectory);
   Output.nextSteps(projectDirectory);
