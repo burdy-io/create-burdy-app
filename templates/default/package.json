@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "burdy": "^1.0",
+    "burdy": "^1.1",
     "yup": "^0.32.9",
     "typeorm": "^0.2.37",
     "react-router": "^5.2.1",
@@ -22,7 +22,7 @@
     "axios": "^0.21.3",
     "@hookform/resolvers": "^2.8.0",
     "@fluentui/font-icons-mdl2": "^8.1.11",
-    "@fluentui/react": "^8.30.0",
+    "@fluentui/react": "^8.29.2",
     "@fluentui/react-experiments": "^8.3.4",
     "@fluentui/react-file-type-icons": "^8.3.2",
     "@fluentui/react-hooks": "^8.3.2"
