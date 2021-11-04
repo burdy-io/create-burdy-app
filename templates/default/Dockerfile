@@ -10,7 +10,9 @@ RUN npm ci --production
 FROM node:16 AS release
 
 WORKDIR /app
-COPY project tsconfig.json ./
+COPY tsconfig.json ./
+COPY project/ ./project
+
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY --from=dependencies /app/package*.json ./
 
